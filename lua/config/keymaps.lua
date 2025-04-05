@@ -1,39 +1,34 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+local keymaps = {
+  { action = "mzJ`z", key = "J", mode = "n" },
+  { action = ":m '>+1<CR>gv=gv", key = "J", mode = "v" },
+  { action = ":m '<-2<CR>gv=gv", key = "K", mode = "v" },
+  { action = "<C-u>zz", key = "<C-u>", mode = "n" },
+  { action = "<C-d>zz", key = "<C-d>", mode = "n" },
+  { action = "nzzzv", key = "n", mode = "n" },
+  { action = "Nzzzv", key = "N", mode = "n" },
+  { action = ":BufferFirst<CR>", key = "<C-h>", mode = "n" },
+  { action = ":BufferLast<CR>", key = "<C-l>", mode = "n" },
+  { action = ":BufferNext<CR>", key = "<C-k>", mode = "n" },
+  { action = ":BufferMoveNext<CR>", key = "<C-S-K>", mode = "n" },
+  { action = ":BufferPrevious<CR>", key = "<C-j>", mode = "n" },
+  { action = ":BufferMovePrevious<CR>", key = "<C-S-J>", mode = "n" },
+  { action = ":BufferClose<CR>", key = "<C-Tab>", mode = "n" },
+  { action = ":NvimTreeToggle<CR>", key = "<C-e>", mode = "n" },
+  { action = ":Telescope find_files<CR>", key = "<leader>ff", mode = "n" },
+  { action = ":Telescope live_grep<CR>", key = "<leader>fg", mode = "n" },
+  { action = ":TagbarToggle<CR>", key = "<F8>", mode = "n" },
+  { action = "<cmd>Trouble diagnostics toggle<CR>", key = "<leader>xx", mode = "n" },
+  { action = "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", key = "<leader>xX", mode = "n" },
+  { action = "<cmd>Trouble symbols toggle focus=false<CR>", key = "<leader>cs", mode = "n" },
+  { action = "<cmd>Trouble lsp toggle focus=false win.position=r<CR>", key = "<leader>cl", mode = "n" },
+  { action = "<cmd>Trouble loclist toggle<CR>", key = "<leader>xL", mode = "n" },
+  { action = "<cmd>Trouble qflist toggle<CR>", key = "<leader>xQ", mode = "n" },
+  { action = ":UndotreeToggle<CR>", key = "<F5>", mode = "n" },
+  { action = ":FloatermToggle<CR>", key = "<C-t>", mode = "n" },
+  { action = ":LazyGit<CR>", key = "<F9>", mode = "n" },
+  { action = ":w<CR>", key = "<leader>w", mode = "n" },
+}
 
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
+for _, map in ipairs(keymaps) do
+  vim.keymap.set(map.mode, map.key, map.action, map.options)
 end
-
--- Normal mode mappings
-map("n", "J", "mzJ`z")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-h>", ":BufferFirst<CR>")
-map("n", "<C-l>", ":BufferLineCyclePrevious<CR>")
-map("n", "<C-k>", ":BufferLineCycleNext<CR>")
-map("n", "<C-j>", ":BufferLineCyclePrev<CR>")
-map("n", "<C-Tab>", ":BufferLineClose<CR>")
-map("n", "<leader>fg", ":Telescope live_grep<CR>")
-map("n", "<F8>", ":TagbarToggle<CR>")
-map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>")
-map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>")
-map("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<CR>")
-map("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=r<CR>")
-map("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>")
-map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>")
-map("n", "<F5>", ":UndotreeToggle<CR>")
-map("n", "<C-t>", ":FloatermToggle<CR>")
-map("n", "<F9>", ":LazyGit<CR>")
-
--- Visual mode mappings
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")

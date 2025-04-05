@@ -1,11 +1,9 @@
 return {
-  "utilyre/barbecue.nvim",
+  "romgrk/barbar.nvim",
   dependencies = {
-    "SmiteshP/nvim-navic",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    require("barbecue").setup({})
+    require("barbar").setup({})
   end,
 }
-
