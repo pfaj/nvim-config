@@ -22,12 +22,13 @@ vim.opt.incsearch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 12
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 vim.opt.signcolumn = "yes"
 vim.opt.smartindent = true
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.termguicolors = true
+vim.opt.conceallevel = 1
 
 vim.opt.updatetime = 50
 vim.opt.wrap = false
@@ -37,6 +38,34 @@ vim.loader.enable()
 
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.nvim/undo")
+
+local function sign(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = "",
+  })
+end
+
+sign({ name = "DiagnosticSignError", text = "" })
+sign({ name = "DiagnosticSignWarn", text = "" })
+sign({ name = "DiagnosticSignHint", text = "" })
+sign({ name = "DiagnosticSignInfo", text = "" })
+
+-- Configure diagnostics
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = false,
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
 
 require("config.keymaps")
 require("config.init")
