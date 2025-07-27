@@ -27,6 +27,7 @@ local keymaps = {
   { action = ":FloatermToggle<CR>", key = "<C-t>", mode = "n" },
   { action = ":LazyGit<CR>", key = "<F9>", mode = "n" },
   { action = ":w<CR>", key = "<leader>w", mode = "n" },
+  { action = ":q<CR>", key = "<leader>q", mode = "n" },
 }
 
 for _, map in ipairs(keymaps) do
