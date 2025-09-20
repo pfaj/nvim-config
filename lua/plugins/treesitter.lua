@@ -1,3 +1,4 @@
+-- return {}
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
@@ -9,6 +10,7 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       highlight = { enable = true },
+      branch = "main",
       indent = { enable = true },
       ensure_installed = {
         "bash",
